@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class MicropostsController extends Controller
@@ -19,6 +20,10 @@ class MicropostsController extends Controller
                 'user' => $user,
                 'microposts' => $microposts,
             ];
+            
+        $data += $this->counts($user);
+        return view('users.show',$data);
+        } else {
             
             return view('welcome');
         }
