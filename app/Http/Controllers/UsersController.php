@@ -77,6 +77,6 @@ class UsersController extends Controller
         return view('users.favorings', $data); 
         
     }
-
+    
 
 }

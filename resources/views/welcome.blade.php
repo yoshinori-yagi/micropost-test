@@ -4,6 +4,7 @@
     @if (Auth::check())
         <div class="row">
             <aside class="col-md-4">
+                <h1>Timeline</h1>
             </aside>
             <div class="col-xs-8">
                 @if (count($microposts) > 0)
