@@ -23,6 +23,9 @@ class MicropostsController extends Controller
         
             return view('welcome',$data);
         }
+        else {
+            return redirect('welcome');  
+        }
     
     }
     
