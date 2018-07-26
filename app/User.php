@@ -127,5 +127,39 @@ class User extends Authenticatable
         return $this->favorings()->where('micropost_id', $micropostId)->exists();
     }
 
+     public function retweetings()
+    {
+        return $this->belongsToMany(Micropost::class, 'retweets', 'user_id', 'micropost_id')->withTimestamps();
+    }
     
+    public function retweet($micropostId)
+    {
+        $exist = $this->is_retweeting($micropostId) ;
+  
+        if ($exist) {
+            return false;
+        } else {
+            $this->favorings()->attach($micropostId) ;
+            return true;
+        }
+    }
+    
+    public function unretweet($micropostId)
+    {
+        // confirming if already following
+        $exist = $this->is_retweeting($micropostId);
+
+        if ($exist) {
+            // stop following if following
+            $this->retweetings()->detach($micropostId);
+            return true;
+        } else {
+            // do nothing if not following
+            return false;
+        }
+    }
+    
+     public function is_retweeting($micropostId) {
+        return $this->retweetings()->where('micropost_id', $micropostId)->exists();
+    }
 }

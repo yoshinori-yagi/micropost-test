@@ -1,0 +1,31 @@
+.jumbotron {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 1200px;
+    height: 900px;
+    background: url("/images/main.jpg") center center repeat-y ;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+.container {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+ 
+}
+
+
+.text-center h1{
+    color: white;
+    padding-top: 300px;
+}
+
+.text-center text-muted{
+    background-color: black;
+}
+
+.btn-ghost {
+    background: transparent;
+}
+

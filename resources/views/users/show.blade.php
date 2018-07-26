@@ -31,6 +31,9 @@
             @if (count($microposts) > 0)
                 @include('microposts.microposts', ['microposts' => $microposts])
             @endif
+            @if (count($microposts->is_retweeting()) > 0)
+                @include('microposts.retweet',['microposts' => $microposts])
+            @endif
         </div>
     </div>
 @endsection

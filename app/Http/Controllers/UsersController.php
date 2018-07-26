@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; // add
+use App\User;
 
 use App\Micropost;
 
@@ -78,5 +78,22 @@ class UsersController extends Controller
         
     }
     
+    public function retweetings($id) {
+        $user = User::find($id);
+        $retweetings = $user->retweetings()->paginate(10);
+        
+        $data = [
+            'user' => $user,
+            'microposts' => $retweetings, ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.retweetings', $data); 
+        
+    }
+    
+    public function members() {
+        return view('users.members');
+    }
 
 }

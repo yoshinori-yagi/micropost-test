@@ -24,6 +24,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
+Route::get('members', 'UsersController@members')->name('users.members');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'users']]);
@@ -39,7 +40,19 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('favorite', 'FavoriteController@store')->name('user.favorite'); 
         Route::delete('unfavorite', 'FavoriteController@destroy')->name('user.unfavorite'); 
         Route::get('favorings', 'UsersController@favorings')->name('users.favorings'); 
+        
+        Route::post('retweet', 'RetweetController@store')->name('user.retweet'); 
+        Route::delete('unretweet', 'RetweetController@destroy')->name('user.unretweet'); 
+        Route::get('retweetings', 'UsersController@retweetings')->name('users.retweetings'); 
     });
     
     Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
+    
+    
 });
+
+# Instagram login
+Route::get('/instagram/', 'InstagramController@instagramLogin')->name('instagram.login');
+
+# Instagram callback
+Route::get('/instagram/callback/', 'InstagramController@instagramCallback');

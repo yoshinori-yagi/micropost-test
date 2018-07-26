@@ -1,5 +1,5 @@
 <ul class="media-list">
-@foreach ($microposts as $micropost)
+@foreach ($microposts->is_retweeting() as $micropost)
     <?php $user = $micropost->user; ?>
     <li class="media">
         <div class="media-left">
